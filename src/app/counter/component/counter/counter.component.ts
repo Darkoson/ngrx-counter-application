@@ -8,13 +8,11 @@ import { CounterStateInterface } from '../../store/state/counter-state.interface
     styleUrls: ['./counter.component.css']
   })
   export class CounterComponent implements OnInit {
-    
-    counter: number = 0;
 
-    constructor(private store: Store<{counter: CounterStateInterface}>) { }
 
+    constructor( ) { }
     ngOnInit(): void {
-      this.store.select('counter').subscribe(data =>{ this.counter = data.counter})
+      
     }
-
+ 
   }

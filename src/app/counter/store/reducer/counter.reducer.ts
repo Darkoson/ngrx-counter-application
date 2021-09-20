@@ -5,15 +5,11 @@ import {
   incrementAction,
   resetAction,
 } from '../action/counter.action';
-import { CounterStateInterface } from '../state/counter-state.interface';
-
-
-const initialState: CounterStateInterface|null = {
-    counter: 0
-}
+import { CounterStateInterface, CounterInitialState } from '../state/counter-state.interface';
+ 
 
 const _counterReducer = createReducer<CounterStateInterface,Action > (
-  initialState,
+    CounterInitialState,
 
   on(incrementAction, (state) => ({
     ...state,
