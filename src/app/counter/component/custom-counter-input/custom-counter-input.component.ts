@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { customIncrementAction } from '../../store/action/counter.action';
 
 @Component({
   selector: 'app-custom-counter-input',
@@ -7,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomCounterInputComponent implements OnInit {
 
-  constructor() { }
+  value:number 
+
+  constructor(private store: Store) { }
+
+  addValue(){
+    this.store.dispatch(customIncrementAction({value: +(this.value)}))
+    console.log('custome component called');
+    
+    
+  }
+
 
   ngOnInit(): void {
   }

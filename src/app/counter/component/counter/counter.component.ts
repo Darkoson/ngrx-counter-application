@@ -10,7 +10,7 @@ import { CounterStateInterface } from '../../store/state/counter-state.interface
   export class CounterComponent implements OnInit {
 
 
-    constructor( ) { }
+    constructor(private store: Store<{counterKey: CounterStateInterface}>) { }
     ngOnInit(): void {
       
     }
