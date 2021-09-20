@@ -1,6 +1,6 @@
 import { Action, createAction, props } from "@ngrx/store";
 import { CounterActionType } from "../type/counter-action-type.enum";
-import { CounterStateInterface } from "../type/counter-state.interface";
+import { CounterStateInterface } from "../state/counter-state.interface";
 
 export const incrementAction = createAction(CounterActionType.INCREMENT );
 

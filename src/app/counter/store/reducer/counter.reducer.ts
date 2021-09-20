@@ -5,7 +5,7 @@ import {
   incrementAction,
   resetAction,
 } from '../action/counter.action';
-import { CounterStateInterface } from '../type/counter-state.interface';
+import { CounterStateInterface } from '../state/counter-state.interface';
 
 
 const initialState: CounterStateInterface|null = {

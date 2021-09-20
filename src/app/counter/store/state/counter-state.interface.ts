@@ -1,3 +1,3 @@
 export interface CounterStateInterface {
-    counter:number |0
+    counter:number
 }
