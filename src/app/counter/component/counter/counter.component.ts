@@ -1,6 +1,6 @@
   import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { CounterStateInterface } from '../../store/state/counter-state.interface';
+import { CounterStateInterface } from '../../store/state/counter.state';
 
   @Component({
     selector: 'app-counter',

@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { channelNameAction, decrementAction, incrementAction, resetAction } from '../../store/action/counter.action';
-import { CounterStateInterface } from '../../store/state/counter-state.interface';
+import { CounterStateInterface } from '../../store/state/counter.state';
 
 @Component({
   selector: 'app-counter-button',

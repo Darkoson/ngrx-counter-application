@@ -7,7 +7,7 @@ import {
   incrementAction,
   resetAction,
 } from '../action/counter.action';
-import { CounterStateInterface, CounterInitialState } from '../state/counter-state.interface';
+import { CounterStateInterface, CounterInitialState } from '../state/counter.state';
  
 
 const _counterReducer = createReducer<CounterStateInterface,Action > (

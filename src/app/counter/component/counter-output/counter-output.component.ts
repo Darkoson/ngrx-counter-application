@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { channelNameStateSelector, counterStateSelector } from '../../store/selector/counter.selector';
-import { CounterStateInterface } from '../../store/state/counter-state.interface';
+import { CounterStateInterface } from '../../store/state/counter.state';
 
 @Component({
   selector: 'app-counter-output',
