@@ -5,14 +5,14 @@ export class CounterSelector{
     
 }
 
-const _counterStateFeatureSelector = createFeatureSelector<CounterStateInterface>('counter')
+const counterStateFeatureSelector$ = createFeatureSelector<CounterStateInterface>('counter')
 
-export const counterStateSelector = createSelector(
-    _counterStateFeatureSelector,
+export const counterStateSelector$ = createSelector(
+    counterStateFeatureSelector$,
     state => state.counter
 )
 
-export const channelNameStateSelector = createSelector(
-    _counterStateFeatureSelector,
+export const channelNameStateSelector$ = createSelector(
+    counterStateFeatureSelector$,
     state => state.channelName
 )

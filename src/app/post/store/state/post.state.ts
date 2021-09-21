@@ -6,7 +6,7 @@ export interface PostStateInterface{
 
 export const postInitialState: PostStateInterface = {
     posts: [
-        {id: 1 , title: "Default title", description: "Default description"},
-        {id: 2 , title: "Default title", description: "Default description"},
+        {id: 1 , title: "Default title 1", description: "Default description 1"},
+        {id: 2 , title: "Default title 2", description: "Default description 2"},
     ]
 }
