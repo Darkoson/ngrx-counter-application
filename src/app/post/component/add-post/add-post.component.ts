@@ -40,7 +40,7 @@ export class AddPostComponent implements OnInit {
     else return null ;
   }
 
-  onFormSubmit(){
+  onAddPost(){
     if(!this.postForm.valid){
       return;
     }
@@ -51,6 +51,7 @@ export class AddPostComponent implements OnInit {
     }
     
     this.store.dispatch(postAddAction({post}))
+    this.postForm.reset()
   }
 
 }
