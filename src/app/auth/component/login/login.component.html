@@ -1,0 +1,30 @@
+<div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+        <h3>Login form</h3>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+
+            <div class="mb-3">
+                <label for="email"> Email</label>
+                <input type="text" class="form-control" id="email" formControlName='email' />
+                <div class="text-danger" *ngIf="loginForm.get('email').touched && !loginForm.get('email').valid">
+                    <span *ngIf="loginForm.get('email').errors.required">Email is required</span>
+                    <span *ngIf="loginForm.get('email').errors.email">Email is invalid</span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="password"> Password</label>
+                <input type="password" class="form-control" id="password" formControlName='password' />
+                <div class="text-danger" *ngIf="loginForm.get('password').touched && !loginForm.get('password').valid">
+                    <span *ngIf="loginForm.get('password').errors.required">The password is required</span>
+                    <span *ngIf="loginForm.get('password').errors.minlength">Thte password must be minimum of 8 characters</span>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <button class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+            </div>
+
+        </form>
+    </div>
+</div>

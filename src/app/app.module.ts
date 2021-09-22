@@ -8,7 +8,7 @@ import { HomeComponent } from './home/component/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment as env} from 'src/environments/environment'; 
+import { environment as env} from 'src/environments/environment';
 
 @NgModule({
   declarations: [
