@@ -8,10 +8,7 @@ import { HomeComponent } from './home/component/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment as env} from 'src/environments/environment';
-import { appReducer } from './shared/store/state/app.state';
-import { CounterModule } from './counter/module/counter.module';
-import { CommonModule } from '@angular/common';
+import { environment as env} from 'src/environments/environment'; 
 
 @NgModule({
   declarations: [
@@ -23,7 +20,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(appReducer ),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({maxAge:30,logOnly: env.production})
   ],
   
