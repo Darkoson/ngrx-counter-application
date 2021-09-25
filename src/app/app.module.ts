@@ -13,7 +13,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { LoadingSpinnerComponent } from './shared/component/loading-spinner/loading-spinner.component';
 
 
-import { appReducer } from './app.state'
+import { appReducer } from './app.state';
 
 @NgModule({
   declarations: [
