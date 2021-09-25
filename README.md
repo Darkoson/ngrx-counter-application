@@ -1,4 +1,4 @@
-# Ngrx1
+# Angular Sample project with Ngrx usage
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.2.
 
