@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { StoreType } from 'src/app/shared/store/store.type';
+import { StoreType } from 'src/app/store.type';
 import { CounterButtonComponent } from '../component/counter-button/counter-button.component';
 import { CounterOutputComponent } from '../component/counter-output/counter-output.component';
 import { CounterComponent } from '../component/counter/counter.component';

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { StoreType } from 'src/app/shared/store/store.type';
+import { StoreType } from 'src/app/store.type';
 
 import { AddPostComponent } from '../component/add-post/add-post.component';
 import { EditPostComponent } from '../component/edit-post/edit-post.component';

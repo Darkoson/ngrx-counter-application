@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { StoreType } from 'src/app/shared/store/store.type';
+import { StoreType } from 'src/app/store.type';
 import { LoginComponent } from '../component/login/login.component';
 import { AuthEffects } from '../store/auth.effect';
 import { AuthReducer } from '../store/auth.reducer';

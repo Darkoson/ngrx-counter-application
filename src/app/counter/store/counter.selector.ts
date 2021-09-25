@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { StoreType } from "src/app/shared/store/store.type";
+import { StoreType } from "src/app/store.type";
 import { CounterStateInterface } from "./counter.state";
 
 

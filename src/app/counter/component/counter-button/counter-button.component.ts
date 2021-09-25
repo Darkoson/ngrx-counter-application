@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
  
-import { AppState } from 'src/app/shared/store/app.state';
+import { AppState } from 'src/app/app.state';
 import { ChannelNameAction, DecrementAction, IncrementAction, ResetAction } from '../../store/counter.action';
 
 @Component({
