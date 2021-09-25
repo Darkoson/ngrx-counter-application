@@ -3,8 +3,9 @@
         <a class="nav-link active" aria-current="page" [routerLink]="['/']" routerLinkActive="router-link-active" >Home</a>
         <a class="nav-link" [routerLink]="['/counter']"  >Counter</a>
         <a class="nav-link" [routerLink]="['/posts']"  >Posts</a>
-        <a class="nav-link" [routerLink]="['/auth']"  >Login</a>
-        <a class="nav-link" [routerLink]="['/auth/singup']"  >Signup</a>
+        <a class="nav-link" [routerLink]="['/auth']" *ngIf="!(isAuthenticated$ |async)" >Login</a>
+        <a class="nav-link" [routerLink]="['/auth/singup']" *ngIf="!(isAuthenticated$ |async)" >Signup</a>
+        <a class="nav-link" [routerLink]="['/auth/singup']" *ngIf="isAuthenticated$ |async"  >Logout</a>
         <a class="nav-link disabled">Disabled</a>
       </nav>
 </div>
