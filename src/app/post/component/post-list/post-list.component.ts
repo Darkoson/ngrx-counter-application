@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { AppState } from 'src/app/shared/store/state/app.state';
-import { postDeleteAction } from '../../store/action/post.action';
-import { postsSelector$ } from '../../store/selector/post.selector';
-import { Post } from '../../store/type/post.model';
+import { AppState } from 'src/app/shared/store/app.state';
+import { PostDeleteAction } from '../../store/post.action';
+import { PostsSelector$ } from '../../store/post.selector';
+import { Post } from '../../model/post.model';
 
 @Component({
   selector: 'app-post-list',
@@ -18,13 +18,13 @@ export class PostListComponent implements OnInit {
 
   onDeletePost(id){
     if(confirm('Are you sure of deleting this post?')){
-      this.store.dispatch(postDeleteAction({id}))
+      this.store.dispatch(PostDeleteAction({id}))
       
     }
   }
 
   ngOnInit(): void {
-    this.posts$ = this.store.select(postsSelector$)
+    this.posts$ = this.store.select(PostsSelector$)
   }
 
 }

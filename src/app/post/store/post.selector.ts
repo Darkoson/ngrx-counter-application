@@ -1,16 +1,16 @@
 import { createFeatureSelector, createSelector  } from "@ngrx/store";
-import { StoreType } from "src/app/shared/store/type/store.type";
-import { PostStateInterface } from "../state/post.state";
+import { StoreType } from "src/app/shared/store/store.type";
+import { PostStateInterface } from "./post.state";
 
 
 const postFeatureSelector$ = createFeatureSelector<PostStateInterface>(StoreType.POST)
 
-export const postsSelector$ = createSelector(
+export const PostsSelector$ = createSelector(
     postFeatureSelector$,
     (state)=>  state.posts
 );
 
-export const postByIdSelector$ = createSelector( postFeatureSelector$, 
+export const PostByIdSelector$ = createSelector( postFeatureSelector$, 
      (state:PostStateInterface, props:{id:string})=>  { 
         return state.posts.find((post)=>post.id == parseInt(props.id) )   ;
     }

@@ -3,10 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { AppState } from 'src/app/shared/store/state/app.state';
-import { postUpdateAction } from '../../store/action/post.action';
-import { postByIdSelector$ } from '../../store/selector/post.selector';
-import { Post } from '../../store/type/post.model';
+import { AppState } from 'src/app/shared/store/app.state';
+import { PostUpdateAction } from '../../store/post.action';
+import { PostByIdSelector$ } from '../../store/post.selector';
+import { Post } from '../../model/post.model';
 
 @Component({
   selector: 'app-edit-post',
@@ -41,14 +41,14 @@ export class EditPostComponent implements OnInit, OnDestroy {
       title: this.postForm.value.title,
       description: this.postForm.value.description
     }
-    this.store.dispatch(postUpdateAction({post}))
+    this.store.dispatch(PostUpdateAction({post}))
     this.router.navigate(['posts'])
   }
 
   ngOnInit(): void {
     this.subscription = this.route.paramMap.subscribe((param)=>{
       const id = param.get('id')
-      this.store.select(postByIdSelector$, {id})
+      this.store.select(PostByIdSelector$, {id})
       .subscribe(post =>{ 
         if(post){
           this.post = post

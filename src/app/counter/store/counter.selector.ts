@@ -1,16 +1,16 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { StoreType } from "src/app/shared/store/type/store.type";
-import { CounterStateInterface } from "../state/counter.state";
+import { StoreType } from "src/app/shared/store/store.type";
+import { CounterStateInterface } from "./counter.state";
 
 
 const counterStateFeatureSelector$ = createFeatureSelector<CounterStateInterface>(StoreType.COUNTER)
 
-export const counterStateSelector$ = createSelector(
+export const CounterStateSelector$ = createSelector(
     counterStateFeatureSelector$,
     state => state.counter
 )
 
-export const channelNameStateSelector$ = createSelector(
+export const ChannelNameStateSelector$ = createSelector(
     counterStateFeatureSelector$,
     state => state.channelName
 )

@@ -1,39 +1,39 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import {
-    channelNameAction,
-    customIncrementAction,
-  decrementAction,
-  incrementAction,
-  resetAction,
-} from '../action/counter.action';
-import { CounterStateInterface, CounterInitialState } from '../state/counter.state';
+    ChannelNameAction,
+    CustomIncrementAction,
+  DecrementAction,
+  IncrementAction,
+  ResetAction,
+} from './counter.action';
+import { CounterStateInterface, CounterInitialState } from './counter.state';
  
 
 const _counterReducer = createReducer<CounterStateInterface,Action > (
     CounterInitialState,
 
-  on(incrementAction, (state) => ({
+  on(IncrementAction, (state) => ({
     ...state,
     counter: state.counter + 1,
   })),
 
-  on(decrementAction, (state) => ({
+  on(DecrementAction, (state) => ({
     ...state,
     counter: state.counter - 1,
   })),
 
-  on(resetAction, (state) => ({
+  on(ResetAction, (state) => ({
     ...state,
     counter: 0,
 })),
 
-on(channelNameAction, (state) => ({
+on(ChannelNameAction, (state) => ({
     ...state,
     channelName: "Channel name changed",
   })),
 
-  on(customIncrementAction,
+  on(CustomIncrementAction,
     (state, action)=>({
         ...state,
         counter: (state.counter) + action.value
@@ -41,7 +41,7 @@ on(channelNameAction, (state) => ({
 
 );
 
-export function counterReducer(state:CounterStateInterface, action:Action)
+export function CounterReducer(state:CounterStateInterface, action:Action)
 {
     return _counterReducer(state, action);
 }

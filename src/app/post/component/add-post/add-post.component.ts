@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/shared/store/state/app.state';
-import { postAddAction } from '../../store/action/post.action';
-import { Post } from '../../store/type/post.model';
+import { AppState } from 'src/app/shared/store/app.state';
+import { PostAddAction } from '../../store/post.action';
+import { Post } from '../../model/post.model';
 
 @Component({
   selector: 'app-add-post',
@@ -50,7 +50,7 @@ export class AddPostComponent implements OnInit {
       description: this.postForm.value.description
     }
     
-    this.store.dispatch(postAddAction({post}))
+    this.store.dispatch(PostAddAction({post}))
     this.postForm.reset()
   }
 

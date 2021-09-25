@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Store } from '@ngrx/store';
  
-import { AppState } from 'src/app/shared/store/state/app.state';
-import { channelNameAction, decrementAction, incrementAction, resetAction } from '../../store/action/counter.action';
+import { AppState } from 'src/app/shared/store/app.state';
+import { ChannelNameAction, DecrementAction, IncrementAction, ResetAction } from '../../store/counter.action';
 
 @Component({
   selector: 'app-counter-button',
@@ -14,18 +14,18 @@ export class CounterButtonComponent implements OnInit {
   constructor(private store: Store<AppState>) { }
 
   onIncrement(){
-    this.store.dispatch(incrementAction())
+    this.store.dispatch(IncrementAction())
     console.log('button component called');
   }
   onDecrement(){
-    this.store.dispatch(decrementAction())
+    this.store.dispatch(DecrementAction())
   }
   onReset(){
-    this.store.dispatch(resetAction())
+    this.store.dispatch(ResetAction())
   } 
 
   onChangeChannelName(){
-    this.store.dispatch(channelNameAction())
+    this.store.dispatch(ChannelNameAction())
   }
 
   ngOnInit(): void {

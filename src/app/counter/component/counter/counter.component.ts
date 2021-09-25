@@ -1,6 +1,6 @@
   import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/shared/store/state/app.state';
+import { AppState } from 'src/app/shared/store/app.state';
 
   @Component({
     selector: 'app-counter',
