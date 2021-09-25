@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './app.state';
-import { LoadingSpinnerSelector$ } from './shared/store/shared.selector';
+import { ErrorMessageSelector$, LoadingSpinnerSelector$ } from './shared/store/shared.selector';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +12,7 @@ import { LoadingSpinnerSelector$ } from './shared/store/shared.selector';
 export class AppComponent implements OnInit{
   title = 'NgRx Complete tutorial';
   showLoading$: Observable<boolean> ;
+  errorMessage$: Observable<string> ; 
 
   constructor(private store: Store<AppState>){
 
@@ -19,5 +20,6 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     this.showLoading$ = this.store.select(LoadingSpinnerSelector$);
+    this.errorMessage$ = this.store.select(ErrorMessageSelector$);
   }
 }
