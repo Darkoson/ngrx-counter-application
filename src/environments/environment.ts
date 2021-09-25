@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false ,
-  
   firebase: {
     apiKey: 'AIzaSyDquKJY0YBiRUp9PC63q4giVQv1abg1EF8',
     authDomain: 'opdark-digital.firebaseapp.com',
