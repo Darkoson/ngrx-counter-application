@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { AuthService } from '../service/auth.service';
-import { LoginStartAction, LoginSuccessAction } from './auth.action';
+import {
+  LoginStartAction,
+  LoginSuccessAction,
+  SignupStartAction,
+  SignupSuccessAction,
+} from './auth.action';
 import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
 import {
   ErrorMessageAction,
@@ -37,7 +42,6 @@ export class AuthEffects {
           catchError((errResp) => {
             let httpError: string = errResp.error.error.message;
             const errorMessage = this.authService.getErrorMessage(httpError);
-            console.log('error object', errorMessage);
             this.store.dispatch(LoadingSpinnerAction({ status: false }));
             return of(ErrorMessageAction({ message: errorMessage }));
           })
@@ -46,12 +50,36 @@ export class AuthEffects {
     );
   });
 
-  loginRedirect$ = createEffect(
+  signupEffect$ = createEffect(() => {
+    return this.action$.pipe(
+      ofType(SignupStartAction),
+      exhaustMap((action) => {
+        return this.authService.signup(action.email, action.password).pipe(
+          map((result) => {
+            const user = this.authService.formatAuthResponseToUser(result);
+            this.store.dispatch(LoadingSpinnerAction({ status: false }));
+            this.store.dispatch(ErrorMessageAction({ message: '' }));
+            return SignupSuccessAction({ user });
+          })
+        );
+      }),
+
+      catchError((errResp) => {
+        let httpError: string = errResp.error.error.message;
+        const errorMessage = this.authService.getErrorMessage(httpError);
+        this.store.dispatch(LoadingSpinnerAction({ status: false }));
+        return of(ErrorMessageAction({ message: errorMessage }));
+      })
+    );
+  });
+
+  
+  redirectAfterSuccessfulLoginOrSignup$ = createEffect(
     () => {
       return this.action$.pipe(
-        ofType(LoginSuccessAction),
+        ofType(...[LoginSuccessAction, SignupSuccessAction]),
         tap(() => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
         })
       );
     },
