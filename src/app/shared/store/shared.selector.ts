@@ -1,17 +1,15 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { StoreType } from 'src/app/store.type';
+import { StateStorageKeys as sk } from 'src/app/app-storage.key';
 import { SharedState } from './shared.state';
 
-const sharedStateSelector$ = createFeatureSelector<SharedState>(
-  StoreType.SHARED
-);
+const sharedState$ = createFeatureSelector<SharedState>(sk.SHARED);
 
 export const LoadingSpinnerSelector$ = createSelector(
-  sharedStateSelector$,
+    sharedState$,
   (state) => state.showLoading
 );
 
 export const ErrorMessageSelector$ = createSelector(
-  sharedStateSelector$,
+  sharedState$,
   (state) => state.errorMessage
 );

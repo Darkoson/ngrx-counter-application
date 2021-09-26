@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import { StoreType } from 'src/app/store.type';
+import { StateStorageKeys as sk } from 'src/app/app-storage.key';
 
 import { AddPostComponent } from '../component/add-post/add-post.component';
 import { EditPostComponent } from '../component/edit-post/edit-post.component';
@@ -22,7 +22,7 @@ import { PostRoutingModule } from './post-routing.module';
     CommonModule,
     ReactiveFormsModule,
     PostRoutingModule,
-    StoreModule.forFeature(StoreType.POST, PostReducer)
+    StoreModule.forFeature(sk.POST, PostReducer)
   ],
   exports: [ 
      PostRoutingModule

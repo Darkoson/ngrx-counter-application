@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './app.state';
+import { AutoLoginAction } from './auth/store/auth.action';
 import { ErrorMessageSelector$, LoadingSpinnerSelector$ } from './shared/store/shared.selector';
 
 @Component({
@@ -21,5 +22,6 @@ export class AppComponent implements OnInit{
   ngOnInit(){
     this.showLoading$ = this.store.select(LoadingSpinnerSelector$);
     this.errorMessage$ = this.store.select(ErrorMessageSelector$);
+    this.store.dispatch(AutoLoginAction())
   }
 }

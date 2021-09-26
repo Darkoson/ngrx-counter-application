@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector  } from "@ngrx/store";
-import { StoreType } from "src/app/store.type";
+import { StateStorageKeys as sk } from "src/app/app-storage.key";
 import { PostStateInterface } from "./post.state";
 
 
-const postFeatureSelector$ = createFeatureSelector<PostStateInterface>(StoreType.POST)
+const postFeatureSelector$ = createFeatureSelector<PostStateInterface>(sk.POST)
 
 export const PostsSelector$ = createSelector(
     postFeatureSelector$,

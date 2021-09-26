@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { AuthService } from '../service/auth.service';
 import {
+  AutoLoginAction,
   LoginStartAction,
   LoginSuccessAction,
   SignupStartAction,
@@ -27,6 +28,22 @@ export class AuthEffects {
     private router: Router
   ) {}
 
+  autoLogin$ = createEffect(
+    () => {
+      return this.action$.pipe(
+        ofType(AutoLoginAction),
+        map((action) => {
+          const user = this.authService.getUserFromLocalStorage();
+          console.log('user from effect' , user);
+          
+        })
+      );
+    },
+    {
+      dispatch: false,
+    }
+  );
+
   login$ = createEffect(() => {
     return this.action$.pipe(
       ofType(LoginStartAction),
@@ -34,6 +51,8 @@ export class AuthEffects {
         return this.authService.login(action.email, action.password).pipe(
           map((result) => {
             const user = this.authService.formatAuthResponseToUser(result);
+            this.authService.setUserInLocalStorage(user);
+
             this.store.dispatch(LoadingSpinnerAction({ status: false }));
             this.store.dispatch(ErrorMessageAction({ message: '' }));
             return LoginSuccessAction({ user });
@@ -50,6 +69,7 @@ export class AuthEffects {
     );
   });
 
+  
   signupEffect$ = createEffect(() => {
     return this.action$.pipe(
       ofType(SignupStartAction),
@@ -57,6 +77,7 @@ export class AuthEffects {
         return this.authService.signup(action.email, action.password).pipe(
           map((result) => {
             const user = this.authService.formatAuthResponseToUser(result);
+            this.authService.setUserInLocalStorage(user);
             this.store.dispatch(LoadingSpinnerAction({ status: false }));
             this.store.dispatch(ErrorMessageAction({ message: '' }));
             return SignupSuccessAction({ user });
@@ -73,7 +94,6 @@ export class AuthEffects {
     );
   });
 
-  
   redirectAfterSuccessfulLoginOrSignup$ = createEffect(
     () => {
       return this.action$.pipe(

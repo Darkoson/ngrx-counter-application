@@ -2,14 +2,19 @@ import { AuthReducer } from "./auth/store/auth.reducer";
 import { AuthState } from "./auth/store/auth.state";
 import { SharedReducer } from "./shared/store/shared.reducer";
 import { SharedState } from "./shared/store/shared.state";
-import { StoreType } from "./store.type";
+import { StateStorageKeys as sk } from "./app-storage.key";
+import { AuthEffects } from "./auth/store/auth.effect";
 
 export interface AppState{
-    [StoreType.SHARED] : SharedState,
-    [StoreType.AUTH] : AuthState
+    [sk.SHARED] : SharedState,
+    [sk.AUTH] : AuthState
 }
 
-export const appReducer  = {
-    [StoreType.SHARED] : SharedReducer,
-    [StoreType.AUTH] : AuthReducer
+export const appReducers  = {
+    [sk.SHARED] : SharedReducer,
+    [sk.AUTH] : AuthReducer
 }
+
+export const appEffects  =  [
+    AuthEffects
+]

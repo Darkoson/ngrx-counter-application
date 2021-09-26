@@ -13,7 +13,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { LoadingSpinnerComponent } from './shared/component/loading-spinner/loading-spinner.component';
 
 
-import { appReducer } from './app.state';
+import { appEffects, appReducers } from './app.state';
 
 @NgModule({
   declarations: [
@@ -27,8 +27,8 @@ import { appReducer } from './app.state';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot(appEffects),
     StoreDevtoolsModule.instrument({maxAge:30,logOnly: env.production})
   ],
   
