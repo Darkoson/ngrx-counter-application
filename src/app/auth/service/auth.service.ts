@@ -27,7 +27,8 @@ export class AuthService {
    */
   login(email: string, password: string): Observable<AuthResponse> {
     let payload = { email, password, returnSecureToken: true };
-    console.log('payload', payload);
+    debugger;
+    // console.log('payload', payload);
 
     let signInEndpoint =
       'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
@@ -142,7 +143,7 @@ export class AuthService {
     if (userData) {
       const userObj = JSON.parse(userData);
       const expiringDate = new Date(userObj._expiringDate);
-      
+
       const user = new User(
         userObj._email,
         userObj._token,
