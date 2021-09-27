@@ -8,6 +8,7 @@ import { Post } from '../model/post.model';
   providedIn: 'root',
 })
 export class PostService {
+  // endPoint: string = `https://opdark-digital.firebaseio.com/`;
   endPoint: string = `https://vue-completecourse.firebaseio.com/posts.json`;
 
   constructor(private http: HttpClient) {}

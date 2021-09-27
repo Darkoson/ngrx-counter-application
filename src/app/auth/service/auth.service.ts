@@ -13,15 +13,14 @@ import { LogoutAction } from '../store/auth.action';
   providedIn: 'root',
 })
 export class AuthService {
-  
   timOutInterval: any;
 
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
   /**
-   * login: Based on the user's credential, it returns the details 
+   * login: Based on the user's credential, it returns the details
    *  from the server after sigin
-   * 
+   *
    * @param email : tring
    * @param password : string
    * @returns Observable<AuthResponse>
@@ -40,9 +39,9 @@ export class AuthService {
   }
 
   /**
-   * signup: Based on the user's credential, it returns the details 
+   * signup: Based on the user's credential, it returns the details
    *  from the server after signup
-   * 
+   *
    * @param email : tring
    * @param password : string
    * @returns Observable<AuthResponse>
@@ -66,16 +65,16 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem(lk.USER_DATA);
-    if(this.timOutInterval){
-      clearInterval(this.timOutInterval)
-      this.timOutInterval = null
+    if (this.timOutInterval) {
+      clearInterval(this.timOutInterval);
+      this.timOutInterval = null;
     }
   }
 
   /**
-   * setUserInLocalStorage: Takes a User object then stringifies it 
+   * setUserInLocalStorage: Takes a User object then stringifies it
    *  and store the result on the client's device
-   * 
+   *
    * @param user : User
    */
   setUserInLocalStorage(user: User) {
@@ -84,66 +83,70 @@ export class AuthService {
   }
 
   /**
-   * runTimeOutInterval: Takes an instance of user and based on 
-   *  the expiring time of its token, it sets a timeOut function and assign 
+   * runTimeOutInterval: Takes an instance of user and based on
+   *  the expiring time of its token, it sets a timeOut function and assign
    *  it to "this.timOutInterval". This will trigger the dispatch(LougoutAction)
    *  when the time it due.
    *
-   * 
-   * @param user: User 
+   *
+   * @param user: User
    */
   runTimeOutInterval(user: User) {
     const currentTime = new Date().getTime();
-    const expiringTime = user.getExpiringDate().getTime();
+    const expiringTime = user.expiringDate.getTime();
 
-    const timeInterval = expiringTime  - currentTime;
+    const timeInterval = expiringTime - currentTime;
 
-    console.log(' time start  in sec:', currentTime/100);
-    console.log(' time to expire in sec:', expiringTime/1000);
-    console.log(' time interval to expire in sec:', timeInterval/1000);
-    
+    console.log(' time start  in sec:', currentTime / 100);
+    console.log(' time to expire in sec:', expiringTime / 1000);
+    console.log(' time interval to expire in sec:', timeInterval / 1000);
 
     this.timOutInterval = setTimeout(() => {
       //logout or get refresh token
-      this.store.dispatch(LogoutAction())
-
+      this.store.dispatch(LogoutAction());
     }, timeInterval);
   }
 
   /**
    * formatAuthResponseToUser: Format the response got from the API call (AuthResponse)
    *  into User object, usable by components
-   * 
+   *
    * @param data : AuthResponse
    * @returns user: User
    */
   formatAuthResponseToUser(data: AuthResponse): User {
-    const expiringDate = new Date(
-      new Date().getTime() + +data.expiresIn * 1000
-    );
-    const user = new User(data.email, data.idToken, data.localId, expiringDate);
-    this.runTimeOutInterval(user);
+    let user = null;
+    if (data) {
+      const expiringDate = new Date(
+        new Date().getTime() + +data.expiresIn * 1000
+      );
+      user = new User(data.email, data.idToken, data.localId, expiringDate);
+      this.runTimeOutInterval(user);
+    }
 
     return user;
   }
 
   /**
-   * getUserFromLocalStorage: Fetch the user from the local storate 
-   *  and format it to User object when it's found, otherwise it 
+   * getUserFromLocalStorage: Fetch the user from the local storate
+   *  and format it to User object when it's found, otherwise it
    *  returns null
-   * 
+   *
    * @returns User|null
    */
   getUserFromLocalStorage(): User {
     const userData = localStorage.getItem(lk.USER_DATA);
 
+    console.log('userData = ', userData);
+    
     if (userData) {
       const userObj = JSON.parse(userData);
-      const expiringDate = new Date(userObj.expiringDate);
+      const expiringDate = new Date(userObj._expiringDate);
+      
       const user = new User(
-        userObj.email,
-        userObj.token,
-        userObj.localId,
+        userObj._email,
+        userObj._token,
+        userObj._localId,
         expiringDate
       );
       return user;
@@ -154,7 +157,7 @@ export class AuthService {
   /**
    * getErrorMessage: Based on the error message from the server,
    *  it return a more meaningful message to the client
-   * 
+   *
    * @param message : string (message text from the server)
    * @returns string
    */
