@@ -12,6 +12,6 @@ export const PostsSelector$ = createSelector(
 
 export const PostByIdSelector$ = createSelector( postFeatureSelector$, 
      (state:PostStateInterface, props:{id:string})=>  { 
-        return state.posts.find((post)=>post.id == parseInt(props.id) )   ;
+        return state.posts.find((post)=>post.id == (props.id) )   ;
     }
 )

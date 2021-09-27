@@ -8,4 +8,8 @@ export const PostAddAction = createAction(PostActionType.POST_ADD, props<{post: 
 
 export const PostUpdateAction = createAction(PostActionType.POST_UPDATE, props<{post: Post}>())
 
-export const PostDeleteAction = createAction(PostActionType.POST_DELETE, props<{id:number}>())
+export const PostDeleteAction = createAction(PostActionType.POST_DELETE, props<{id:string}>())
+
+export const PostLoadAction = createAction(PostActionType.POST_LOAD )
+
+export const PostLoadSuccessAction = createAction(PostActionType.POST_LOAD_SUCCESS, props<{posts: Post[]}>())
