@@ -3,6 +3,7 @@ export enum AuthActionType{
     LOGIN_SUCCESS  =  '[Auth page] login success' ,
     LOGIN_FAIL =  '[Auth page] login fail',
     AUTO_LOGIN =  '[Auth page] auto login',
+    AUTO_LOGOUT =  '[Auth page] auto logout',
 
     SIGNUP_START  = '[Auth page] signup start' ,
     SIGNUP_SUCCSESS  =  '[Auth page] signup success' ,

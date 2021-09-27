@@ -17,7 +17,7 @@
                 <input type="password" class="form-control" id="password" formControlName='password' />
                 <div class="text-danger" *ngIf="loginForm.get('password').touched && !loginForm.get('password').valid">
                     <span *ngIf="loginForm.get('password').errors.required">The password is required</span>
-                    <span *ngIf="loginForm.get('password').errors.minlength">The password must be minimum of 8 characters</span>
+                    <span *ngIf="loginForm.get('password').errors.minlength">The password must be minimum of 3 characters</span>
                 </div>
             </div>
 

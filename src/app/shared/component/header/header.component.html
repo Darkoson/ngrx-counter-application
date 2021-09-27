@@ -5,7 +5,7 @@
         <a class="nav-link" [routerLink]="['/posts']"  >Posts</a>
         <a class="nav-link" [routerLink]="['/auth']" *ngIf="!(isAuthenticated$ |async)" >Login</a>
         <a class="nav-link" [routerLink]="['/auth/signup']" *ngIf="!(isAuthenticated$ |async)" >Signup</a>
-        <a class="nav-link" [routerLink]="['/auth/logout']" *ngIf="isAuthenticated$ |async"  >Logout</a>
+        <a class="nav-link"   *ngIf="isAuthenticated$ |async" (click)="onLogout($event)"  >Logout</a>
         <a class="nav-link disabled">Disabled</a>
       </nav>
 </div>

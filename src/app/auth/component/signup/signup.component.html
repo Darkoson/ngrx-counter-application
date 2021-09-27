@@ -19,7 +19,7 @@
                     <input type="password"  id="password" class="form-control" formControlName="password">
                     <div class="text-danger" *ngIf="signupForm.get('password').touched && !signupForm.get('password').valid">
                         <span *ngIf="signupForm.get('password').errors.required">The password is required</span>
-                        <span *ngIf="signupForm.get('password').errors.minlength">The password must be minimum of 8 characters</span>
+                        <span *ngIf="signupForm.get('password').errors.minlength">The password must be minimum of 3 characters</span>
                     </div>
                 </div>
 
@@ -28,7 +28,7 @@
                     <input type="password"  id="confirm-password" class="form-control" formControlName="passwordConfirm">
                     <div class="text-danger" *ngIf="signupForm.get('passwordConfirm').touched && !signupForm.get('passwordConfirm').valid">
                         <span *ngIf="signupForm.get('passwordConfirm').errors.required">The confirm password is required</span>
-                        <span *ngIf="signupForm.get('passwordConfirm').errors.minlength">The password must be minimum of 8 characters</span>
+                        <span *ngIf="signupForm.get('passwordConfirm').errors.minlength">The password must be minimum of 3 characters</span>
                     </div>
                     <div class="text-danger" *ngIf="signupForm.get('passwordConfirm').touched && signupForm.get('passwordConfirm').value != signupForm.get('password').value">
                         <span *ngIf="signupForm.get('passwordConfirm').value != signupForm.get('password').value">The confirm password must be same as password</span>

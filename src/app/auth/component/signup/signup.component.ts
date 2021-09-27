@@ -32,11 +32,11 @@ export class SignupComponent implements OnInit {
 
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(8)]),
+        Validators.minLength(3)]),
 
       passwordConfirm: new FormControl('', [
         Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(3),
       ]),
     });
   }
