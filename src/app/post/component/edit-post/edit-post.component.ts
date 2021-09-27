@@ -42,7 +42,7 @@ export class EditPostComponent implements OnInit, OnDestroy {
       description: this.postForm.value.description
     }
     this.store.dispatch(PostUpdateAction({post}))
-    this.router.navigate(['posts'])
+    //this.router.navigate(['posts'])
   }
 
   ngOnInit(): void {
