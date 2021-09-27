@@ -6,6 +6,8 @@ export const PostListAction  = createAction(PostActionType.POST_LIST)
 
 export const PostAddAction = createAction(PostActionType.POST_ADD, props<{post: Post}>())
 
+export const PostAddSuccessAction = createAction(PostActionType.POST_ADD_SUCCESS, props<{post: Post}>())
+
 export const PostUpdateAction = createAction(PostActionType.POST_UPDATE, props<{post: Post}>())
 
 export const PostDeleteAction = createAction(PostActionType.POST_DELETE, props<{id:string}>())

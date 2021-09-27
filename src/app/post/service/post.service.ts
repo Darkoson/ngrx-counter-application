@@ -8,11 +8,18 @@ import { Post } from '../model/post.model';
   providedIn: 'root',
 })
 export class PostService {
+
+  endPoint: string = `https://vue-completecourse.firebaseio.com/posts.json`; 
+
   constructor(private http: HttpClient) {}
+
+  postPost(post: Post): Observable<{name:string}> {
+    return this.http.post<{name:string}>(this.endPoint, post) 
+  }
 
   getPost(): Observable<Post[]> {
     return this.http
-      .get<Post[]>(`https://vue-completecourse.firebaseio.com/posts.json`)
+      .get<Post[]>(this.endPoint)
       .pipe(
         map((data) => {
           const posts: Post[] = [];
