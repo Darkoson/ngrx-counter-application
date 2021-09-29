@@ -2,8 +2,7 @@ export const environment = {
   production: true,
   
   firebase: {
-    apiKey: 'AIzaSyA9HEOZrRHZP026VQObeDz2PVD_GLpMV50',
-    // apiKey: 'AIzaSyDquKJY0YBiRUp9PC63q4giVQv1abg1EF8',
+    apiKey: 'AIzaSyDquKJY0YBiRUp9PC63q4giVQv1abg1EF8',
     authDomain: 'opdark-digital.firebaseapp.com',
     databaseURL: 'https://opdark-digital.firebaseio.com',
     projectId: 'opdark-digital',

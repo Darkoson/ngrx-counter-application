@@ -3,6 +3,7 @@ export enum StateStorageKeys {
     AUTH = 'auth',
     COUNTER = 'counter',
     SHARED = 'shared',
+    ROUTER = 'router',
 }
 
 export enum LocalStorageKeys {

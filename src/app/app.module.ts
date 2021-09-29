@@ -14,6 +14,8 @@ import { LoadingSpinnerComponent } from './shared/component/loading-spinner/load
 
 import { appEffects, appReducers } from './app.state';
 import { AuthTokenInterceptor } from './auth/service/auth-token.interceptor';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './shared/store/router/custom-serializer';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,9 @@ import { AuthTokenInterceptor } from './auth/service/auth-token.interceptor';
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot(appEffects),
     StoreDevtoolsModule.instrument({ maxAge: 30, logOnly: env.production }),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer, 
+    }),
   ],
 
   providers: [

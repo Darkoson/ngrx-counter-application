@@ -27,8 +27,6 @@ export class AuthService {
    */
   login(email: string, password: string): Observable<AuthResponse> {
     let payload = { email, password, returnSecureToken: true };
-    debugger;
-    // console.log('payload', payload);
 
     let signInEndpoint =
       'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';

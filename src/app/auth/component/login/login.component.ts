@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
-import { LoadingSpinnerAction } from 'src/app/shared/store/shared.action';
+import { LoadingSpinnerAction } from 'src/app/shared/store/shared/shared.action';
 import { LoginStartAction } from '../../store/auth.action';
 
 @Component({
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(6),
       ]),
     });
   }

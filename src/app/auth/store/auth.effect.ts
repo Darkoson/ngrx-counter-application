@@ -10,7 +10,7 @@ import {
   SignupSuccessAction,
 } from './auth.action';
 import { catchError, exhaustMap, map, mergeMap, tap } from 'rxjs/operators';
-import { ErrorMessageAction, LoadingSpinnerAction,} from 'src/app/shared/store/shared.action';
+import { ErrorMessageAction, LoadingSpinnerAction,} from 'src/app/shared/store/shared/shared.action';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.state';
 
