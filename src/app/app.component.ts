@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from './app.state';
 import { AutoLoginAction } from './auth/store/auth.action';
-import { ErrorMessageSelector$, LoadingSpinnerSelector$ } from './shared/store/shared.selector';
+import { ErrorMessageSelector$, LoadingSpinnerSelector$ } from './shared/store/shared/shared.selector';
 
 @Component({
   selector: 'app-root',

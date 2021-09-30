@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.state';
@@ -11,61 +10,62 @@ import { Post } from '../../model/post.model';
 @Component({
   selector: 'app-edit-post',
   templateUrl: './edit-post.component.html',
-  styleUrls: ['./edit-post.component.css']
+  styleUrls: ['./edit-post.component.css'],
 })
 export class EditPostComponent implements OnInit, OnDestroy {
+  post: Post;
+  postForm: FormGroup;
+  subscription: Subscription;
 
-  post: Post
-  postForm: FormGroup
-  subscription: Subscription
-
-  constructor(
-    private route: ActivatedRoute, 
-    private router: Router,
-    private store: Store<AppState>) { }
+  constructor( 
+    private store: Store<AppState>
+  ) {}
 
   createForm() {
     this.postForm = new FormGroup({
-      title: new FormControl(this.post.title, [Validators.required, Validators.minLength(6)]),
-      description : new FormControl(this.post.description, [ Validators.required, Validators.minLength(10) ])
-    })
+      title: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
+      description: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(10),
+      ]),
+    });
   }
 
-  onUpdatePost(){
-    if(!this.postForm.valid){
-      return
-    } 
+  onUpdatePost() {
+    if (!this.postForm.valid) {
+      return;
+    }
 
-    let post: Post =  {
+    let post: Post = {
       id: this.post.id,
       title: this.postForm.value.title,
-      description: this.postForm.value.description
-    }
-    this.store.dispatch(PostUpdateAction({post}))
-    //this.router.navigate(['posts'])
+      description: this.postForm.value.description,
+    };
+    this.store.dispatch(PostUpdateAction({ post }));
+    
   }
 
   ngOnInit(): void {
-    this.subscription = this.route.paramMap.subscribe((param)=>{
-      const id = param.get('id')
-      this.store.select(PostByIdSelector$, {id})
-      .subscribe(post =>{ 
+    this.createForm();
+    this.subscription = this.store
+      .select(PostByIdSelector$)
+      .subscribe((post) => {
         if(post){
-          this.post = post
-          this.createForm()
+          this.post = post;
+          this.postForm.patchValue({
+            title: post.title,
+            description: post.description,
+          });
         }
-        else{
-          console.log('no post to update!');
-          
-        }
-      })
-    })
-  }
- 
-  ngOnDestroy(){
-    if(this.subscription){
-      this.subscription.unsubscribe()
-    }
+      });
   }
 
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

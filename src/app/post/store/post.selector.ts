@@ -1,5 +1,7 @@
 import { createFeatureSelector, createSelector  } from "@ngrx/store";
 import { StateStorageKeys as sk } from "src/app/app-storage.key";
+import { RouterStateUrl } from "src/app/shared/store/router/custom-serializer";
+import { currentRouteSelector$ } from "src/app/shared/store/router/router.selector";
 import { PostStateInterface } from "./post.state";
 
 
@@ -10,8 +12,10 @@ export const PostsSelector$ = createSelector(
     (state)=>  state.posts
 );
 
-export const PostByIdSelector$ = createSelector( postFeatureSelector$, 
-     (state:PostStateInterface, props:{id:string})=>  { 
-        return state.posts.find((post)=>post.id == (props.id) )   ;
+export const PostByIdSelector$ = createSelector( 
+    PostsSelector$, 
+    currentRouteSelector$,
+     (posts, route: RouterStateUrl)=>  { 
+        return posts? posts.find((post)=>post.id == route.params['id'] ) : null ;
     }
 )
