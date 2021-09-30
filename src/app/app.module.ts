@@ -16,6 +16,10 @@ import { appEffects, appReducers } from './app.state';
 import { AuthTokenInterceptor } from './auth/service/auth-token.interceptor';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { CustomSerializer } from './shared/store/router/custom-serializer';
+import { SinglePostComponent } from './post/component/single-post/single-post.component';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [
@@ -23,12 +27,16 @@ import { CustomSerializer } from './shared/store/router/custom-serializer';
     HomeComponent,
     HeaderComponent,
     LoadingSpinnerComponent,
+    SinglePostComponent,
   ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    AngularFireModule.initializeApp(env.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot(appEffects),
     StoreDevtoolsModule.instrument({ maxAge: 30, logOnly: env.production }),

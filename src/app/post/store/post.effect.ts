@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { act, Actions, createEffect, ofType } from '@ngrx/effects';
+import { RouterNavigationAction, ROUTER_NAVIGATION } from '@ngrx/router-store';
 import { of } from 'rxjs';
-import { map, mergeMap, switchMap } from 'rxjs/operators';
+import { filter, map, mergeMap, switchMap } from 'rxjs/operators';
 import { PostService } from '../service/post.service';
 import {
   PostAddAction,
@@ -76,6 +77,25 @@ export class PostEffect {
     },
     { dispatch: false }
   );
+
+  getSinglePost$ = createEffect( ()=>{
+    return this.actions$.pipe(
+      ofType(ROUTER_NAVIGATION),
+      filter((routerAction: RouterNavigationAction) => {
+        return routerAction.payload.routerState.url.startsWith('/posts/single')
+      } ),
+      map((routerAction: RouterNavigationAction) =>{
+        return  routerAction.payload.routerState['params']['id']
+      }),
+      switchMap((id)=>{ 
+        return this.postService.getPostById(id).pipe(
+          map((post) =>{
+            return PostLoadSuccessAction({posts:[{...post}]})
+          })
+        )
+      })
+    )
+  })
 
   deletePost$ = createEffect(() => {
     return this.actions$.pipe(

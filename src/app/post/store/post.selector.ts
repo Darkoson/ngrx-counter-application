@@ -19,3 +19,5 @@ export const PostByIdSelector$ = createSelector(
         return posts? posts.find((post)=>post.id == route.params['id'] ) : null ;
     }
 )
+
+

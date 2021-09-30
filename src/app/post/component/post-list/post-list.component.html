@@ -23,6 +23,12 @@
                          class="btn btn-primary"
                          [routerLink]="['edit', post.id]"
                          > update</a>
+
+                        <a
+                         class="btn btn-info"
+                         [routerLink]="['single', post.id]"
+                         > single</a>
+                         
                         <a
                          class="btn btn-danger mx-4"
                          (click)="onDeletePost(post.id)"
