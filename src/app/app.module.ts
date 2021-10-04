@@ -20,7 +20,7 @@ import { SinglePostComponent } from './post/component/single-post/single-post.co
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
-
+ 
 @NgModule({
   declarations: [
     AppComponent,

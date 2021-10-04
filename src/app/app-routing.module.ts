@@ -9,6 +9,7 @@ const routes: Routes = [
   { path:'auth' , loadChildren: () =>import('./auth/module/auth.module').then(m =>m.AuthModule)},
   { path:'counter' ,  canActivate:[AuthGuard], loadChildren: () =>import('./counter/module/counter.module').then(m =>m.CounterModule)},
   { path:'posts' , canActivate:[AuthGuard], loadChildren: ()=> import('./post/module/post.module').then(m=>m.PostModule)},
+  { path:'students' ,   loadChildren: () =>import('./student/module/student.module').then(m =>m.StudentModule)},
   { path:'posts/single/:id' , component: SinglePostComponent},
   
 ]
