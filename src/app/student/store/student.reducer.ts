@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { StudentAddAction, StudentDeleteSuccessAction, StudentLoadSuccessAction } from './student.action';
+import { StudentAddAction, StudentDeleteSuccessAction, StudentLoadSuccessAction, StudentUpdateSuccessAction } from './student.action';
 import { studentAdapter, studentInitialState } from './student.state';
 
 const _studentReducer = createReducer(
@@ -15,6 +15,10 @@ const _studentReducer = createReducer(
 
   on(StudentLoadSuccessAction, (state, action) => {
     return studentAdapter.setAll(action.students, state);
+  }),
+
+  on(StudentUpdateSuccessAction, (state, action) => {
+    return studentAdapter.updateOne(action.student, state);
   }),
 
 );
